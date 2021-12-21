@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         super.onOptionsItemSelected(item);
+
+        sharedPreferences = this.getSharedPreferences("com.example.notesprototype", MODE_PRIVATE);
+        Log.i("SharedPreferences", sharedPreferences.getString("language", ""));
 
         switch (item.getItemId()) {
             case R.id.english:
@@ -68,8 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
         mSelectedLanguageText = findViewById(R.id.tvLanguage);
         sharedPreferences = this.getSharedPreferences("com.example.notesprototype", MODE_PRIVATE);
+        Log.i("SharedPreferences", sharedPreferences.getString("language", ""));
 
-        if (!sharedPreferences.getString("language", "").isEmpty()) {
+        if (sharedPreferences.getString("language", "").isEmpty()) {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_info)
                     .setTitle("Select Languages")
@@ -83,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
                         languageName = "Spanish";
                         mSelectedLanguageText.setText(languageName);
                         sharedPreferences.edit().putString("language", languageName).apply();
-                    });
+                    })
+            .show();
         }
 
 
