@@ -40,10 +40,22 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.english:
                 // change to English
+                if (!sharedPreferences.getString("language", "").equals("English")) {
+                    languageName = "English";
+                    mSelectedLanguageText.setText(languageName);
+                    sharedPreferences.edit().putString("language", languageName).apply();
+                }
                 return true;
+
             case R.id.spanish:
                 //change to Spanish
+                if (!sharedPreferences.getString("language", "").equals("Spanish")) {
+                    languageName = "Spanish";
+                    mSelectedLanguageText.setText(languageName);
+                    sharedPreferences.edit().putString("language", languageName).apply();
+                }
                 return true;
+
             default:
                 return false;
         }
