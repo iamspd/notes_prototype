@@ -40,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.english:
                 // change to English
-                break;
+                return true;
             case R.id.spanish:
                 //change to Spanish
+                return true;
+            default:
+                return false;
         }
-
-
     }
 
     @Override
